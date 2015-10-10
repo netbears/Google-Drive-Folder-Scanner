@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <!-- Use a templated HTML printing scriptlet to import common stylesheet -->
+    <?!= HtmlService.createHtmlOutputFromFile('Stylesheet').getContent(); ?>
+  </head>
+  <body>
+    <!-- Below is the HTML code that defines the sidebar element structure. -->
+    <div class="top-header">
+    <h1> GET DRIVE REPORT
+    </h1>
+    </div>
+      <p>
+        This sidebar allows you to pull Drive data based on a specific Folder ID.
+      </p>
+      
+      <div id='form-sidebar'>
+        <p>Select which fields to be shown in the report:</p>
+        <form>
+           <input type='checkbox' id='Name' name='Name' value='Name' checked='checked'>Name<br>
+           <input type='checkbox' id='Type' name='Type' value='Type' checked='checked'>Type<br>
+           <input type='checkbox' id='Description' name='Description' value='Description' checked='checked'>Description<br>
+           <input type='checkbox' id='Id' name='Id' value='Id' checked='checked'>Id<br>
+           <input type='checkbox' id='Url' name='Url' value='Url' checked='checked'>Url<br>
+           <input type='checkbox' id='Date-created' name='Date-created' value='Date-created' checked='checked'>Date created<br>
+           <input type='checkbox' id='Last-updated' name='Last-updated' value='Last-updated' checked='checked'>Last updated<br>
+           <input type='checkbox' id='Size' name='Size' value='Size' checked='checked'>Size<br>
+           <input type='checkbox' id='Owner' name='Owner' value='Owner' checked='checked'>Owner<br>
+           <input type='checkbox' id='Sharing-Access' name='Sharing-Access' value='Sharing-Access'>Sharing Access (memory intensive)<br>
+           <input type='checkbox' id='Sharing-Permission' name='Sharing-Permission' value='Sharing-Permission'>Sharing Permission (memory intensive)<br>
+           <input type='checkbox' id='Viewers' name='Viewers' value='Viewers'>Viewers (memory intensive)<br>
+           <input type='checkbox' id='Editors' name='Editors' value='Editors'>Editors (memory intensive)<br>
+           <input type='checkbox' id='Parent-folder' name='Parent-folder' value='Parent-folder' checked='checked'>Parent folder<br>
+        
+        </form>
+      
+      </div>
+      
+      <div class="wrapper" id="sidebar-button-bar">
+        
+        <button id="sidebar-file-picker-button" class="action">Pick folder</button>
+      </div>
+      <div id="sidebar-status"></div>
+   
+    
+    <div id='important'>
+       <p>Important notice : Due to the 6 minute time execution limitation in Apps Script, the script will try and fetch as much data as possible without timing out.</p>
+    </div>
+
+
+    <!-- Use a templated HTML printing scriptlet to import JavaScript. -->
+    <?!= HtmlService.createHtmlOutputFromFile('SidebarJavaScript').getContent(); ?>
+  </body>
+</html>
+

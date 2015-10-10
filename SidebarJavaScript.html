@@ -1,0 +1,66 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+  /**
+   * Run initializations on sidebar load.
+   */
+  $(function() {
+    // Assign handler functions to sidebar elements here, if needed.
+    $('#sidebar-file-picker-button').click(onFolderPickClick);
+  });
+
+  
+  /**
+   * Calls the server to close the sidebar.
+   */
+  function onFolderPickClick() {
+    var curHeader = getCurrentHeaders();
+    
+    
+    // Send the value to the server and handle the response.
+    google.script.run
+       .withSuccessHandler(
+          function (msg,folder){
+             $('#sidebar-get-data-button').prop('disabled', false);
+          })
+       .withFailureHandler(
+          function(msg, element) {
+             showStatus('Unable to load Folder Picker.','error');
+          })
+       .showPicker(curHeader)
+  }
+
+  /**
+   * Displays the given status message in the sidebar.
+   *
+   * @param {String} msg The status message to display.
+   * @param {String} classId The message type (class id) that the message
+   *   should be displayed as.
+   */
+  function showStatus(msg, classId) {
+    $('#sidebar-status').removeClass().html(msg);
+    if (classId) {
+      $('#sidebar-status').addClass(classId);
+    }
+  }
+  
+  function getCurrentHeaders(){
+     var obj = {
+                'Name': $('#Name').prop( "checked" ),
+                'Type': $('#Type').prop( "checked" ),
+                'Description': $('#Description').prop( "checked" ),
+                'Id': $('#Id').prop( "checked" ),
+                'Url': $('#Url').prop( "checked" ),
+                'Date created': $('#Date-created').prop( "checked" ),
+                'Last updated': $('#Last-updated').prop( "checked" ),
+                'Size': $('#Size').prop( "checked" ),
+                'Owner': $('#Owner').prop( "checked" ),
+                'Sharing Access': $('#Sharing-Access').prop( "checked" ),
+                'Sharing Permission': $('#Sharing-Permission').prop( "checked" ),
+                'Viewers': $('#Viewers').prop( "checked" ),
+                'Editors': $('#Editors').prop( "checked" ),
+                'Parent folder': $('#Parent-folder').prop( "checked" )
+                }
+     return obj;
+     }
+
+</script>
