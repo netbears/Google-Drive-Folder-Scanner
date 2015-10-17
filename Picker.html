@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<style>
+
+.hidden{
+   display:none;
+}
+
+.center-image{
+   position:absolute;
+   top:160px;
+   left:205px;
+}
+
+
+</style>
+
   <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons.css">
   <script type="text/javascript">
     // IMPORTANT: Replace the value for DEVELOPER_KEY with the API key obtained
     // from the Google Developers Console.
-    
+    //var DEVELOPER_KEY = 'AIzaSyC9SJujK9bEhCCZIijIg0m6Jq_EBAyTqFQ';
     var DIALOG_DIMENSIONS = {width: 890, height: 630};
     var pickerApiLoaded = false;
-
+    $('#spinner').hide();
+    
      /**
      * Loads the Google Picker API.
      */
@@ -53,7 +70,7 @@
           .setCallback(pickerCallback)
           .setSize(DIALOG_DIMENSIONS.width - 2,
                    DIALOG_DIMENSIONS.height - 2)
-          .hideTitleBar()
+          .setTitle('Select folder')
           .enableFeature(google.picker.Feature.NAV_HIDDEN)
           
           .build();
@@ -80,13 +97,12 @@
          
         var id = doc[google.picker.Document.ID];
         
-        //var url = doc[google.picker.Document.URL];
-        //var title = doc[google.picker.Document.NAME];            
-            //google.script.run.addAttachmentToList({url: url, title: title});
 
-            //google.script.host.close();
+            
             google.script.run.getFolderName(id);
-            google.script.host.close();
+            
+            
+          
             
             } else if (action == google.picker.Action.CANCEL) {
         google.script.host.close();
@@ -100,7 +116,9 @@
      * @param {string} message The error message to display.
      */
     function showError(message) {
-      document.getElementById('result').innerHTML = 'Error: ' + message;
+      //document.getElementById('error').innerHTML = 'Error: ' + message;
+      document.getElementById('error').show();
+      //$('#results').append('<div>' + name + '</div>');
     }
     
   
@@ -109,10 +127,21 @@
 <body>
   <script>
   getOAuthToken();
+  
   </script>
   
   <script type="text/javascript" src="https://apis.google.com/js/api.js?onload=onApiLoad"></script>
-   
+  
+  <div id='spinner'>
+      <img src="http://www.netbears.ro/wp-content/uploads/spinner.gif" alt="Please wait..." class='center-image'>
+  </div>
+  
+        
+  
+  <div class="hidden" id="error">
+     Unable to load folder picker.
+  </div>
+
   
 </body>
 </html>

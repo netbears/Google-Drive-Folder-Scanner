@@ -76,7 +76,7 @@ function getFolderName(value) {
   var folderID = value;
   var folderName = DriveApp.getFolderById(folderID).getName();
   
-  SpreadsheetApp.getUi().alert('Gathering data for folder "'+folderName+'". \nThis might take a few minutes depending on the size of the folder. \nPlease wait...');
+  //SpreadsheetApp.getUi().alert('Gathering data for folder "'+folderName+'". \nThis might take a few minutes depending on the size of the folder. \nPlease wait...');
   
   start = new Date();
   
