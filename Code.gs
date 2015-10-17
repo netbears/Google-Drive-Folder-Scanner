@@ -4,18 +4,6 @@
 
 var SIDEBAR_TITLE = 'Get Drive Report';
 
-/**
- * Adds a custom menu with items to show the sidebar and dialog.
- *
- * @param {Object} e The event parameter for a simple onOpen trigger.
- */
-function onOpen(e) {
-  onInitialize();
-  SpreadsheetApp.getUi().createMenu('SCRIPT')
-      .addItem('Drive scanner', 'showSidebar')
-      .addToUi();
-}
-
 function onOpen(e){
   SpreadsheetApp.getUi()
       .createAddonMenu()

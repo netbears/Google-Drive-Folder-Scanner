@@ -6,12 +6,19 @@
   $(function() {
     // Assign handler functions to sidebar elements here, if needed.
     $('#sidebar-file-picker-button').click(onFolderPickClick);
+    $('#add-more-fields').click(onShowOptionalFieldsClick);
   });
 
   
   /**
    * Calls the server to close the sidebar.
    */
+  function onShowOptionalFieldsClick() {
+     $('#add-more-fields').hide();
+     $('#form-optional-fields').show();
+     
+  }
+   
   function onFolderPickClick() {
     var curHeader = getCurrentHeaders();
     
